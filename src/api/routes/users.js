@@ -4,8 +4,9 @@ const router = Router()
 
 router
     .get("/", controller.getAllUsers)
-    .get("/:name", controller.getOneUser)
-    .post("/", controller.createUser)
+    .get("/:email", controller.getOneUser)
     .put("/:id", controller.updateUser)
     .put("/:id/active", controller.activeUser)
     .put("/:id/deactive", controller.deactiveUser)
+
+export default router
