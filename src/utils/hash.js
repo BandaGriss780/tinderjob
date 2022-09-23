@@ -7,6 +7,6 @@ export const generateHash = (password) => {
     return hash
 }
 
-export const validatePassword = (password, dbpassword) => {
-    return bcrypt.compare(password, dbpassword)
+export const validatePassword = async(password, dbpassword) => {
+    return await bcrypt.compare(password, dbpassword)
 }

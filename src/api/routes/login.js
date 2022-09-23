@@ -6,34 +6,22 @@ router
     .get("/", (req, res, next) => {
         res.send("Login page")
     })
-    .post("/auth/login", passport.authenticate("local-login", {
+    .post("/", passport.authenticate("local-login", {
         successRedirect: "/profile",
-        failureRedirect: "/auth/login",
-        failureFlash: true
-    }))
-
-    .get("/auth/register", (req, res, next) => {
-        if(registerMessage) {
-            res.send(registerMessage)
-        } else {
-            res.send("Register page")
-        }
-    })
-    .post("/auth/register", passport.authenticate("local-register", {
-        successRedirect: "/profile",
-        failureRedirect: "/auth/register",
+        failureRedirect: "/api/login",
         passReqToCallback: true
     }))
 
-    .get("/auth/logout", (req, res, next) => {
+
+    .get("/logout", (req, res, next) => {
         req.logout()
         res.redirect("/auth/login")
     })
 
-router.use((req, res, next) => {
-    isLoggedIn(req, res, next)
-    next()
-})
+// router.use((req, res, next) => {
+//     isLoggedIn(req, res, next)
+//     next()
+// })
 
 router
     .get("/profile", (req, res, next) => {

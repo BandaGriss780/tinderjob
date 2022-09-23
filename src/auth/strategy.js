@@ -40,15 +40,18 @@ passport.use('local-register', new LocalStrategy({
 }))
 
 passport.use('local-login', new LocalStrategy({
-    usernameField: 'username',
+    usernameField: 'email',
     passwordField: 'password',
     passReqToCallback: true
-}, async (req, name, password, done) => {
-    const user = await User.getOneUser( name )
+}, async (req, email, password, done) => {
+    console.log(email, password)
+    const user = await User.getOneUser(email)
+    console.log(user);
     if (!user) {
+        console.log("if1")
         return done(null, false)
     }
-    if (validatePassword(password, user.password)) {
+    if (!validatePassword(password, user.password)) {
         return done(null, false)
     }
     done(null, user)
