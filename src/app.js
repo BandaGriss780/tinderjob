@@ -10,8 +10,9 @@ import apiLogin from './api/routes/login.js'
 import apiRegister from './api/routes/register.js'
 import apiPost from './api/routes/posts.js'
 import apiUsers from './api/routes/users.js'
+import apiRedirect from './api/routes/redirect.js'
 import "./auth/strategy.js"
-
+import "./auth/oauth-strategy.js"
 const app = express()
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
@@ -37,4 +38,5 @@ app.use('/api/login', apiLogin)
 app.use('/api/register', apiRegister)
 app.use('/api/post', apiPost)
 app.use('/api/users', apiUsers)
+app.use('/api/redirect', apiRedirect)
 export default app

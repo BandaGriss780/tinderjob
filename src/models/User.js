@@ -58,6 +58,14 @@ const User = {
             }
         })
         return deactiveUser
+    },
+    getOneUserGoogle: async (id) => {
+        const user = await prisma.user.findUnique({
+            where: {
+                googleId: id
+            }
+        })
+        return user
     }
 }
 

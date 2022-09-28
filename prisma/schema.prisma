@@ -12,11 +12,11 @@ model user {
   name                                            String         @db.VarChar(16) @unique
   surname                                         String?        @db.VarChar(45)
   email                                           String?        @db.VarChar(255) @unique
-  password                                        String         @db.VarChar(300)
+  password                                        String?         @db.VarChar(300)
   createdAt                                       DateTime?      @default(now()) @db.Timestamp(0)
   avatar                                          String?        @db.VarChar(2048)
   birthdate                                       String?        @db.VarChar(45)
-  pronouns                                        String?        @db.VarChar(10)
+  googleId                                        String?        @db.VarChar(1024)
   nationality                                     String?        @db.VarChar(45)
   phone                                           String?        @db.VarChar(45)
   description                                     String?        @db.VarChar(1024)

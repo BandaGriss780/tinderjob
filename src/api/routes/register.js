@@ -3,11 +3,16 @@ import passport from 'passport'
 const router = Router()
 
 router
+    .get('/google', passport.authenticate("google",{
+        successRedirect: "/profile",
+        failureRedirect: "/api/register",
+        passReqToCallback: true
+    }))
     .get('/', (req, res) => {
-        res.send("error register")
+        res.send("<p>register page</p>")
     })
     .post("/", passport.authenticate("local-register", {
-        successRedirect: "/api/login",
+        successRedirect: "/api/redirect",
         failureRedirect: "/api/register",
         passReqToCallback: true
     }))

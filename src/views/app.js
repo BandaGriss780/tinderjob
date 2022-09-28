@@ -1,56 +1,35 @@
-
-const inputUsername = document.querySelector(".input-name")
-const username = inputUsername.value
-
-const inputlastName = document.querySelector(".input-lastName")
-const lastName = inputlastName.value
-
-const inputMail = document.querySelector(".input-mail")
-const mail = inputMail.value
-
-const inputPassword = document.querySelector(".input-password")
-const password = inputPassword.value
-
+const inputUsername = document.querySelector(".name")
+const inputlastName = document.querySelector(".surname")
+const inputMail = document.querySelector(".email")
+const inputPassword = document.querySelector(".password")
 const btn = document.querySelector(".boton-Registro")
-ByteLengthQueuingStrategy()
-// const subirDatos = async () => {
-//     console.log("subirDatos")
-//     await fetch('/api/register', {
-//         method: "POST",
-//         headers: {
-//             'Accept': 'application/json',
-//             'Content-Type': 'application/json'
-//           },
-//         body: JSON.stringify({
-//             name: username,
-//             lastName: lastName,
-//             mail: mail,
-//             password: password
-//         })
-//     })();
-// }
+ 
+const subirDatos = async () => {
+     const name = inputUsername.value
+     const surname = inputlastName.value
+     const email = inputMail.value
+     const password = inputPassword.value
+     const respuesta = {name, surname, email, password}
+    const envio = await fetch('/api/register', {
+         method: "POST",
+         cache: "no-cache",
+         mode: "cors",
+         headers: {
+             'Accept': 'application/json',
+             'Content-Type': 'application/json'
+           },
+         body: JSON.stringify({...respuesta}),
+         redirect: "follow",
+         referrerPolicy: "no-referrer",
+         credentials: "same-origin"
+     });
+     console.log(JSON.stringify({...respuesta}))
+     return envio;
+}
+btn.addEventListener("click", subirDatos);
 
 
 
-// (async () => {
-//     const subirDatos = await fetch('/api/register', {
-//       method: 'POST',
-//       headers: {
-//         'Accept': 'application/json',
-//         'Content-Type': 'application/json'
-//       },
-//       body: JSON.stringify(            
-//         {name: username,
-//         lastName: lastName,
-//         mail: mail,
-//         password: password})
-//     });
-//     const content = await subirDatos.json();
-  
-//     console.log(content);
-//   })();
-
-  //btn.addEventListener("click", subirDatos)
 
 
 

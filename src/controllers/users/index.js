@@ -1,15 +1,21 @@
 import service from "../../services/users/index.js"
 import { avatarRegex, emailRegex, phoneRegex } from "../../utils/regex.js"
 import { uniqueID } from "../../utils/uniqueID.js"
+import Redis from 'redis';
+export const client = Redis.createClient( { host: "localhost", port: 6379 } );
 
 export const controller = {
 getAllUsers: async (req, res) => {
+    const reply = await client.get("users")
+    if (reply) return res.send(JSON.parse(reply))
     const users = await service.getAllUsers()
+    const saveResult = await client.set("users", JSON.stringify(users), { EX: 3600 })
     res.status(200).json(users)
 },
 
 getOneUser: async (req, res) => {
-    const user = await service.getOneUser(req.params.name)
+    const { email } = req.params
+    const user = await service.getOneUser(email)
     res.status(200).json(user)
 },
 
