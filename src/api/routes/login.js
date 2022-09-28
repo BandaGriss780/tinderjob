@@ -4,10 +4,10 @@ const router = express.Router()
 
 router
     .get("/", (req, res, next) => {
-        res.send("Login page")
+        res.render("ingresar.html")
     })
     .post("/", passport.authenticate("local-login", {
-        successRedirect: "/profile",
+        successRedirect: "/api/perfil",
         failureRedirect: "/api/login",
         passReqToCallback: true
     }))

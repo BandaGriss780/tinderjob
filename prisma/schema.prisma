@@ -9,20 +9,11 @@ datasource db {
 
 model user {
   id                                              String         @id @db.VarChar(50)
-  name                                            String         @db.VarChar(16) @unique
+  name                                            String         @db.VarChar(16) 
   surname                                         String?        @db.VarChar(45)
   email                                           String?        @db.VarChar(255) @unique
   password                                        String?         @db.VarChar(300)
-  createdAt                                       DateTime?      @default(now()) @db.Timestamp(0)
-  avatar                                          String?        @db.VarChar(2048)
-  birthdate                                       String?        @db.VarChar(45)
   googleId                                        String?        @db.VarChar(1024)
-  nationality                                     String?        @db.VarChar(45)
-  phone                                           String?        @db.VarChar(45)
-  description                                     String?        @db.VarChar(1024)
-  actualJob                                       String?        @db.VarChar(45)
-  active                                          Int?           @db.TinyInt
-  status                                          String?        @db.VarChar(45)
 }
 
 model post {

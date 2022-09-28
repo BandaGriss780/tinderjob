@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./main.css">
 
     <title>Ingresar</title>
 </head>
 <body>
     <a href="/index.html">Volver</a>
 
-    <input type="text" placeholder="Correo"/>
-    <input type="text" placeholder="Contraseña"/>
-    <button id="ingresar">Ingresar</button>
-        <a href="/api/register/google">Ingresar con google</a>
-    
+    <form action="/api/login" method="POST">
+        <input class=correo-login type="text" placeholder="Correo"/>
+        <input class= pass-login type="text" placeholder="Contraseña"/>
+        <button class="login-boton" id="ingresar-btn" type="submit">Ingresar</button>
+    </form>
+
+    <a href="/api/register/google">Ingresar con google</a>
+    <script src="../js/app.js" defer></script>    
+    <link rel="stylesheet" href="../css/main.css">
+
 </body>
 </html>

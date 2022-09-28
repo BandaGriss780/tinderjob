@@ -4,15 +4,15 @@ const router = Router()
 
 router
     .get('/google', passport.authenticate("google",{
-        successRedirect: "/profile",
+        successRedirect: "/api/perfil",
         failureRedirect: "/api/register",
         passReqToCallback: true
     }))
     .get('/', (req, res) => {
-        res.send("<p>register page</p>")
+        res.render("registrarse.html")
     })
     .post("/", passport.authenticate("local-register", {
-        successRedirect: "/api/redirect",
+        successRedirect: "/api/perfil",
         failureRedirect: "/api/register",
         passReqToCallback: true
     }))

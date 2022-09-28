@@ -10,9 +10,10 @@ import apiLogin from './api/routes/login.js'
 import apiRegister from './api/routes/register.js'
 import apiPost from './api/routes/posts.js'
 import apiUsers from './api/routes/users.js'
-import apiRedirect from './api/routes/redirect.js'
+import apiPerfil from './v1/routes/index.routes.js'
 import "./auth/strategy.js"
 import "./auth/oauth-strategy.js"
+import cons from "consolidate"
 const app = express()
 
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
@@ -25,6 +26,9 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
 app.use(express.static(path.join(__dirname, "views")))
+app.set('views', path.join(__dirname, 'views'))
+app.engine("html", cons.swig)
+app.set('view engine', 'html')
 
 app.use(session({
     secret: process.env.SESSION_SECRET,
@@ -38,5 +42,6 @@ app.use('/api/login', apiLogin)
 app.use('/api/register', apiRegister)
 app.use('/api/post', apiPost)
 app.use('/api/users', apiUsers)
-app.use('/api/redirect', apiRedirect)
+app.use('/api/perfil', apiPerfil)
+
 export default app
